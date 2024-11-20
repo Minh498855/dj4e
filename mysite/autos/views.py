@@ -89,21 +89,6 @@ class AutoCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
     success_url = reverse_lazy('autos:all')
 
-    def get(self, request):
-        form = model
-        ctx = {'form': form}
-        return render(request, self.template, ctx)
-
-    def post(self, request):
-        form = model
-        if not form.is_valid():
-            ctx = {'form': form}
-            return render(request, self.template, ctx)
-
-        make = form.save()
-        return redirect(self.success_url)
-
-
 class AutoUpdate(LoginRequiredMixin, UpdateView):
     model = Auto
     fields = '__all__'
