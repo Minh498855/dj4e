@@ -8,7 +8,6 @@ from autos.models import Auto, Make
 from autos.forms import MakeForm
 
 
-
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
         mc = Make.objects.count()
