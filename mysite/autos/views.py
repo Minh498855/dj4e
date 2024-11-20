@@ -8,6 +8,7 @@ from autos.models import Auto, Make
 from autos.forms import MakeForm
 
 
+
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
         mc = Make.objects.count()
@@ -87,6 +88,20 @@ class AutoCreate(LoginRequiredMixin, CreateView):
     model = Auto
     fields = '__all__'
     success_url = reverse_lazy('autos:all')
+
+    def get(self, request):
+        form = model
+        ctx = {'form': form}
+        return render(request, self.template, ctx)
+
+    def post(self, request):
+        form = model
+        if not form.is_valid():
+            ctx = {'form': form}
+            return render(request, self.template, ctx)
+
+        make = form.save()
+        return redirect(self.success_url)
 
 
 class AutoUpdate(LoginRequiredMixin, UpdateView):
