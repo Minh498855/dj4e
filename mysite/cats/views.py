@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from cats.models import Breed, Cat
 
 
-class MainView(LoginRequiredMixin, View):
+class CatList(LoginRequiredMixin, View):
     def get(self, request):
         bc = Breed.objects.count()
         cl = Cat.objects.all()

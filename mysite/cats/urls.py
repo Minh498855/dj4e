@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'cats'
 urlpatterns = [
-    path('', views.MainView.as_view(), name='all'),
+    path('', views.CatList.as_view(), name='all'),
 
     path('breed', views.BreedView.as_view(), name='breed_list'),
     path('breed/create', views.BreedCreate.as_view(), name='breed_create'),
